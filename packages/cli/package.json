@@ -1,14 +1,27 @@
 {
   "name": "@open-os/cli",
   "version": "0.0.1",
-  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deepraj21/OpenOS.git",
+    "directory": "packages/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "main": "./dist/cli.js",
   "bin": {
     "openos": "./dist/cli.js",
     "openOS": "./dist/cli.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
+    "prepublishOnly": "pnpm run build",
     "test": "vitest run --passWithNoTests",
     "lint": "node -e \"process.exit(0)\""
   },

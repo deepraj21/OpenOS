@@ -5,7 +5,9 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "test": "turbo run test",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "clean:dist": "node -e \"const fs=require('fs');const p=require('path');for(const n of fs.readdirSync('packages')){const d=p.join('packages',n,'dist');if(fs.existsSync(d))fs.rmSync(d,{recursive:true,force:true});}\"",
+    "publish:npm": "pnpm run clean:dist && pnpm run build && pnpm publish -r --access public --no-git-checks --filter '@open-os/types' --filter '@open-os/kernel' --filter '@open-os/mcp' --filter '@open-os/a2a' --filter '@open-os/sdk' --filter '@open-os/cli'"
   },
   "devDependencies": {
     "@open-os/cli": "workspace:*",
