@@ -1,0 +1,14 @@
+{
+  "title": "OpenOS",
+  "pages": [
+    "index",
+    "quick-start",
+    "architecture",
+    "registry-cli",
+    "ecosystem-protocols",
+    "roadmap",
+    "open-beta",
+    "design-tokens",
+    "contributing"
+  ]
+}

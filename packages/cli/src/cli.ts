@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-import { writeFile } from 'node:fs/promises'
-import { resolve } from 'node:path'
+import { mkdir, writeFile } from 'node:fs/promises'
+import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { glob } from 'glob'
 import chalk from 'chalk'
@@ -9,6 +9,13 @@ import ora from 'ora'
 import prompts from 'prompts'
 import { createOS } from '@openos/sdk'
 import type { AgentDefinition } from '@openos/types'
+import {
+  manifestForPublish,
+  parseInstallRef,
+  readAgentSource,
+  registryAuthHeaders,
+  registryBaseUrl,
+} from './registry.js'
 
 const program = new Command()
 
@@ -141,6 +148,98 @@ export default defineAgent({
     const out = resolve(process.cwd(), `${id}.agent.ts`)
     await writeFile(out, source, 'utf8')
     process.stdout.write(chalk.green(`Created ${out}\n`))
+  })
+
+program
+  .command('publish')
+  .description('Publish an agent module to the OpenOS registry')
+  .argument('<agent-file>', 'Path to agent module (e.g. agents/web-researcher/index.ts)')
+  .option('-v, --version <semver>', 'Semantic version', '0.1.0')
+  .action(async (agentFile: string, opts: { version: string }) => {
+    const abs = resolve(process.cwd(), agentFile)
+    const spinner = ora('Publishing…').start()
+    try {
+      const mod = await importModule(abs)
+      const agent = (mod.default ?? mod.agent) as AgentDefinition | undefined
+      if (!agent || typeof agent !== 'object' || !('id' in agent)) {
+        throw new Error('Agent file must export default AgentDefinition')
+      }
+      const code = await readAgentSource(abs)
+      const body = {
+        version: opts.version,
+        code,
+        manifest: manifestForPublish(agent),
+      }
+      const url = `${registryBaseUrl()}/api/agents`
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...registryAuthHeaders(),
+        },
+        body: JSON.stringify(body),
+      })
+      const text = await res.text()
+      let json: { error?: string; slug?: string; version?: string } = {}
+      try {
+        json = JSON.parse(text) as typeof json
+      } catch {
+        /* ignore */
+      }
+      spinner.stop()
+      if (!res.ok) {
+        throw new Error(json.error ?? (text || `HTTP ${res.status}`))
+      }
+      process.stdout.write(
+        chalk.green(`Published ${json.slug ?? agent.id}@${json.version ?? opts.version}\n`),
+      )
+    } catch (err) {
+      spinner.stop()
+      const msg = err instanceof Error ? err.message : String(err)
+      process.stderr.write(chalk.red(`Error: ${msg}\n`))
+      process.exitCode = 1
+    }
+  })
+
+program
+  .command('install')
+  .description('Install an agent from the registry into a local folder')
+  .argument('<slug>', 'Agent id or slug@version (e.g. web-researcher@0.1.0)')
+  .option('-o, --out <dir>', 'Output directory', 'agents')
+  .action(async (spec: string, opts: { out: string }) => {
+    const { slug, version } = parseInstallRef(spec)
+    const spinner = ora('Downloading…').start()
+    try {
+      const base = registryBaseUrl()
+      const path = version
+        ? `${base}/api/agents/${encodeURIComponent(slug)}/versions/${encodeURIComponent(version)}`
+        : `${base}/api/agents/${encodeURIComponent(slug)}`
+      const res = await fetch(path, { headers: { ...registryAuthHeaders() } })
+      const text = await res.text()
+      let json: { code?: string; slug?: string; error?: string } = {}
+      try {
+        json = JSON.parse(text) as typeof json
+      } catch {
+        /* ignore */
+      }
+      spinner.stop()
+      if (!res.ok) {
+        throw new Error(json.error ?? (text || `HTTP ${res.status}`))
+      }
+      if (typeof json.code !== 'string') {
+        throw new Error('Invalid registry response: missing code')
+      }
+      const outDir = resolve(process.cwd(), opts.out, json.slug ?? slug)
+      await mkdir(outDir, { recursive: true })
+      const outFile = join(outDir, 'index.ts')
+      await writeFile(outFile, json.code, 'utf8')
+      process.stdout.write(chalk.green(`Installed ${json.slug ?? slug} → ${outFile}\n`))
+    } catch (err) {
+      spinner.stop()
+      const msg = err instanceof Error ? err.message : String(err)
+      process.stderr.write(chalk.red(`Error: ${msg}\n`))
+      process.exitCode = 1
+    }
   })
 
 async function importModule(absPath: string): Promise<Record<string, unknown>> {

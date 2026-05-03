@@ -8,5 +8,5 @@
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.test.ts"],
-  "references": [{ "path": "../kernel" }, { "path": "../types" }]
+  "references": [{ "path": "../a2a" }, { "path": "../kernel" }, { "path": "../mcp" }, { "path": "../types" }]
 }

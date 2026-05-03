@@ -16,7 +16,7 @@ export default function ComposerPage() {
         <div>
           <strong style={{ fontFamily: 'var(--font-display)', fontSize: 20 }}>Flow composer</strong>
           <div style={{ color: 'var(--color-muted)', fontSize: 14, marginTop: 4 }}>
-            React Flow shell — export to <code>createOS()</code> config in a later iteration.
+            React Flow + graph JSON — use <strong>Export createOS() module</strong> to copy generated TypeScript.
           </div>
         </div>
         <span

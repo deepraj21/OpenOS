@@ -1,0 +1,24 @@
+---
+title: Open beta checklist
+description: Operational steps before calling Phase 2 “open beta” in public comms.
+---
+
+This is a **runbook**, not application code. Complete when you are ready to invite external users to the public registry and docs.
+
+## Registry production
+
+- Deploy the registry app with **PostgreSQL** (`provider = postgresql` in Prisma + `DATABASE_URL`).
+- Set **`OPENOS_REGISTRY_API_KEYS`** and distribute keys to trusted publishers only.
+- Add **rate limiting** (reverse proxy or middleware) on `POST /api/agents` and expensive `GET` routes.
+- Document **abuse** and **takedown** contact in the registry UI footer.
+
+## Communication
+
+- Publish a **changelog** entry for Phase 2 features (CLI, MCP, A2A, Python client).
+- Post in **Discord** / social with registry base URL and docs URL.
+- Pin **GitHub** discussion or release with known limitations (SendMessage payload shape may vary by remote A2A server).
+
+## Verification
+
+- Run `pnpm build`, `pnpm test`, and smoke-test `openos publish` / `openos install` against the production URL.
+- Confirm docs site search (`/api/search`) and static generation succeed on the host you use for production.

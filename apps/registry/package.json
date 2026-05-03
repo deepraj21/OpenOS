@@ -6,6 +6,7 @@
     "build": "prisma generate && DATABASE_URL=file:./prisma/registry.db prisma migrate deploy && next build",
     "lint": "next lint",
     "start": "next start -p 3001",
+    "test": "vitest run",
     "postinstall": "prisma generate",
     "db:migrate": "DATABASE_URL=file:./prisma/registry.db prisma migrate deploy"
   },
@@ -16,6 +17,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "vitest": "^2.1.8",
     "@types/node": "^22.10.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

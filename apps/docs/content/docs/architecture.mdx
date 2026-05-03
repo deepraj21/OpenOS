@@ -1,0 +1,19 @@
+---
+title: Architecture
+description: How @openos/sdk, @openos/kernel, and LLM adapters fit together.
+---
+
+## Layers
+
+- **`@openos/types`** — shared interfaces (`AgentDefinition`, `ToolDefinition`, `KernelEvent`, …).
+- **`@openos/kernel`** — scheduler, executor, memory bus, tool registry, events. No outbound HTTP; LLM calls go through adapters in `kernel/src/adapters/`.
+- **`@openos/sdk`** — `defineAgent`, `useTool`, `useMemory`, `createOS`, plus ecosystem helpers (for example `loadMcpTools` from `@openos/mcp`).
+- **`@openos/cli`** — `run`, `list`, `init`, `publish`, `install`.
+
+## Task flow
+
+Each `os.run()` enqueues a `Task`. The scheduler runs the executor with merged global + agent tools. The executor builds chat messages, calls the configured `LLMAdapter`, and handles tool calls until completion or limits.
+
+## Registry
+
+The registry app stores serialized agent metadata and TypeScript source per version. `openos publish` uploads a bundle; `openos install <slug>` writes `agents/<slug>/index.ts` for local execution.

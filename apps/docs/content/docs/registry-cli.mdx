@@ -1,0 +1,29 @@
+---
+title: Registry and CLI
+description: Publish and install agents with openos publish / openos install.
+---
+
+## Environment
+
+- **`OPENOS_REGISTRY_URL`** — base URL of the registry app (default `http://localhost:3001`).
+- **`OPENOS_REGISTRY_TOKEN`** — bearer token sent on publish/install when the registry has `OPENOS_REGISTRY_API_KEYS` set.
+- **Server:** `OPENOS_REGISTRY_API_KEYS` — comma-separated keys allowed to `POST /api/agents`. If unset, publish is allowed without auth (local dev only).
+
+## Commands
+
+```bash
+openos publish agents/web-researcher/index.ts -v 0.1.0
+openos install web-researcher@0.1.0
+openos install web-researcher --out agents
+```
+
+## API
+
+- `GET /api/agents` — list with optional `q`, `tag`, `slug` query params.
+- `POST /api/agents` — publish JSON body `{ version, code, manifest, changelog?, author? }`.
+- `GET /api/agents/[slug]` — latest version (or `?version=`).
+- `GET /api/agents/[slug]/versions/[version]` — specific version.
+
+## Production database
+
+The default Prisma datasource is SQLite. For PostgreSQL, point `DATABASE_URL` at Postgres and set `provider = "postgresql"` in `apps/registry/prisma/schema.prisma`, then run `prisma migrate deploy` against the new database.

@@ -7,5 +7,10 @@ dist
 .env.local
 apps/registry/prisma/*.db
 apps/registry/prisma/*.db-journal
+apps/registry/prisma/**/*.db
+apps/registry/prisma/**/*.db-journal
+.cursor/
+**/__pycache__/
+*.py[cod]
 coverage
 .DS_Store

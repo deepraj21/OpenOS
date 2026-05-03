@@ -10,6 +10,8 @@ datasource db {
 /// Published agent package metadata (Phase 2 registry).
 model Agent {
   id          String         @id @default(cuid())
+  /// Public install id (kebab-case), matches AgentDefinition.id from manifest
+  slug        String         @unique
   name        String
   description String
   version     String         @default("0.0.1")

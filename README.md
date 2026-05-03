@@ -64,7 +64,7 @@ OpenOS is **infrastructure code** — open source, developer-first, composable. 
 
 ## Monorepo (this repository)
 
-This repo is a **pnpm + Turborepo** workspace. Phase 1 ships `@openos/types`, `@openos/kernel`, `@openos/sdk`, `@openos/cli`, and three reference agents under `agents/`. Phase 2 adds `apps/docs`, `apps/registry` (Next.js + Prisma + SQLite for local dev), and `apps/composer` (Next.js + React Flow). UI tokens follow [`DESIGN.md`](./DESIGN.md).
+This repo is a **pnpm + Turborepo** workspace. **Phase 1 is complete:** `@openos/types`, `@openos/kernel`, `@openos/sdk`, `@openos/cli`, and three reference agents under `agents/`. **Phase 2 (ecosystem)** adds Fumadocs-based [`apps/docs`](./apps/docs), registry HTTP API + `openos publish` / `openos install`, React Flow composer export, `@openos/mcp`, `@openos/a2a`, and a thin Python registry client in [`packages/openos-py`](./packages/openos-py). UI tokens follow [`DESIGN.md`](./DESIGN.md).
 
 ```bash
 pnpm install
@@ -244,6 +244,9 @@ openOS/
 │   ├── kernel/          # Core runtime — agent lifecycle, task queue, memory bus
 │   ├── sdk/             # Developer-facing TypeScript SDK
 │   ├── cli/             # openOS CLI — run, build, publish agents
+│   ├── mcp/             # MCP stdio client → OpenOS ToolDefinition
+│   ├── a2a/             # A2A Agent Card + JSON-RPC client helpers
+│   ├── openos-py/       # Thin Python registry HTTP client (pip local path)
 │   └── types/           # Shared TypeScript interfaces
 ├── apps/
 │   ├── docs/            # Documentation site
@@ -260,22 +263,23 @@ openOS/
 
 ## Roadmap
 
-### Phase 1 — Foundation `[In progress]`
+### Phase 1 — Foundation `[Complete]`
 - [x] Monorepo setup (pnpm + Turborepo)
-- [ ] Kernel: scheduler, executor, memory, tool registry
-- [ ] TypeScript SDK: `defineAgent`, `useTool`, `useMemory`, `createOS`
-- [ ] CLI: `run`, `list`, `init`
-- [ ] LLM adapters: OpenAI, Anthropic, Ollama
-- [ ] Reference agents: web-researcher, code-reviewer, file-manager
-- [ ] Full test suite
+- [x] Kernel: scheduler, executor, memory, tool registry
+- [x] TypeScript SDK: `defineAgent`, `useTool`, `useMemory`, `createOS`
+- [x] CLI: `run`, `list`, `init`
+- [x] LLM adapters: OpenAI, Anthropic, Ollama (Gemini / custom: typed, not implemented yet)
+- [x] Reference agents: web-researcher, code-reviewer, file-manager
+- [x] Test suite (Vitest: kernel + SDK; mock adapters, no live LLM calls in CI)
 
-### Phase 2 — Ecosystem
-- [ ] Python SDK (`pip install openos`)
-- [ ] Agent registry — publish, install, version
-- [ ] MCP protocol support (import tools from any MCP server)
-- [ ] A2A protocol support (inter-agent communication across runtimes)
-- [ ] Visual flow composer
-- [ ] Open beta
+### Phase 2 — Ecosystem `[In progress]`
+- [x] Python SDK (thin) — [`packages/openos-py`](./packages/openos-py) registry client; `pip install ./packages/openos-py` until PyPI publish
+- [x] **Docs** — Next.js 15 + Fumadocs MDX ([`apps/docs`](./apps/docs)); migrated quick start, architecture, registry, MCP/A2A pages
+- [x] **Registry** — Prisma + SQLite; `POST`/`GET` APIs, optional `OPENOS_REGISTRY_API_KEYS`; CLI `openos publish` / `openos install` ([`apps/registry`](./apps/registry))
+- [x] **Composer** — React Flow + graph JSON + export generated `createOS()` module ([`apps/composer`](./apps/composer))
+- [x] MCP protocol support — [`@openos/mcp`](./packages/mcp) (`loadMcpTools`, re-exported from SDK)
+- [x] A2A protocol support — [`@openos/a2a`](./packages/a2a) (`fetchAgentCard`, `a2aDelegateRun`, `createA2aDelegateTool`, re-exported from SDK)
+- [ ] **Open beta** — public registry host, rate limits / abuse policy, prod `OPENOS_REGISTRY_API_KEYS`, Discord + release comms (ops checklist; not gated on further code)
 
 ### Phase 3 — Scale
 - [ ] Hosted cloud runtime (OpenOS Cloud)

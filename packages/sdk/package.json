@@ -17,7 +17,9 @@
     "lint": "node -e \"process.exit(0)\""
   },
   "dependencies": {
+    "@openos/a2a": "workspace:*",
     "@openos/kernel": "workspace:*",
+    "@openos/mcp": "workspace:*",
     "@openos/types": "workspace:*"
   },
   "devDependencies": {

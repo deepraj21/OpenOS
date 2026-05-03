@@ -1,0 +1,59 @@
+---
+title: Quick start
+description: Install dependencies, run an agent with the CLI, and use the SDK in code.
+---
+
+## Monorepo
+
+From the repository root:
+
+```bash
+pnpm install
+pnpm build
+pnpm test
+pnpm exec openos list
+pnpm exec openos run agents/web-researcher/index.ts "What is OpenOS?"
+```
+
+Set provider API keys from the root `.env.example` (for example `ANTHROPIC_API_KEY`).
+
+## SDK (when published)
+
+```bash
+npm install @openos/sdk
+```
+
+```typescript
+import { createOS, defineAgent, useTool } from '@openos/sdk'
+
+const tool = useTool({
+  name: 'echo',
+  description: 'Echo input',
+  parameters: { type: 'object', properties: { text: { type: 'string' } }, required: ['text'] },
+  async execute({ text }) {
+    return String(text)
+  },
+})
+
+const agent = defineAgent({
+  id: 'echo-bot',
+  name: 'Echo',
+  description: 'Echoes input.',
+  model: { provider: 'anthropic', model: 'claude-sonnet-4-6' },
+  tools: [tool],
+  systemPrompt: 'You are concise.',
+})
+
+const os = createOS({ maxConcurrentTasks: 5 })
+os.use(agent)
+const result = await os.run('echo-bot', 'Hello')
+console.log(result.output)
+```
+
+## Apps (Phase 2)
+
+```bash
+pnpm --filter @openos/docs dev      # http://localhost:3000
+pnpm --filter @openos/registry dev  # http://localhost:3001
+pnpm --filter @openos/composer dev  # http://localhost:3002
+```

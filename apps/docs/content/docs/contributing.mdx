@@ -1,0 +1,14 @@
+---
+title: Contributing
+description: How to contribute agents and code to OpenOS.
+---
+
+OpenOS is open source. For repository workflow, tests, and agent submissions, see the root **`CONTRIBUTING.md`** in the monorepo.
+
+To propose a **reference agent**:
+
+1. Add `agents/<your-agent>/index.ts` exporting `defineAgent(...)` as default.
+2. Add `agents/<your-agent>/README.md` with description, usage, and required tools or env vars.
+3. Open a pull request for review.
+
+For the **registry**, use `openos publish` against a running registry instance (see *Registry and CLI*).

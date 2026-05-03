@@ -4,6 +4,18 @@ export { useMemory } from './use-memory.js'
 export { createOS } from './create-os.js'
 export type { CreateOSOptions, CreateOSResult } from './create-os.js'
 
+export { loadMcpTools, type McpStdioConnectOptions, type McpToolsHandle } from '@openos/mcp'
+export {
+  a2aDelegateRun,
+  a2aJsonRpcCall,
+  createA2aDelegateTool,
+  fetchAgentCard,
+  resolveJsonRpcUrl,
+  type AgentCard,
+  type A2aDelegateOptions,
+  type A2aRemoteToolConfig,
+} from '@openos/a2a'
+
 export type {
   AgentContext,
   AgentDefinition,
