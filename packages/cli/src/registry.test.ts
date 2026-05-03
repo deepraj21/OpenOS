@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { AgentDefinition } from '@openos/types'
+import type { AgentDefinition } from '@open-os/types'
 import { manifestForPublish, parseInstallRef } from './registry.js'
 
 describe('parseInstallRef', () => {

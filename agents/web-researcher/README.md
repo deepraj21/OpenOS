@@ -13,7 +13,7 @@ From the monorepo root:
 
 ```bash
 pnpm install
-pnpm --filter @openos/cli build
+pnpm --filter @open-os/cli build
 pnpm exec openos run agents/web-researcher/index.ts "What is OpenOS?"
 ```
 

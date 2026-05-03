@@ -1,5 +1,5 @@
 {
-  "name": "@openos/sdk",
+  "name": "@open-os/sdk",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -17,10 +17,10 @@
     "lint": "node -e \"process.exit(0)\""
   },
   "dependencies": {
-    "@openos/a2a": "workspace:*",
-    "@openos/kernel": "workspace:*",
-    "@openos/mcp": "workspace:*",
-    "@openos/types": "workspace:*"
+    "@open-os/a2a": "workspace:*",
+    "@open-os/kernel": "workspace:*",
+    "@open-os/mcp": "workspace:*",
+    "@open-os/types": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.2",

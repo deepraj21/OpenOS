@@ -1,5 +1,5 @@
 {
-  "name": "@openos/mcp",
+  "name": "@open-os/mcp",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
-    "@openos/types": "workspace:*"
+    "@open-os/types": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

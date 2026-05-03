@@ -1,5 +1,5 @@
 {
-  "name": "@openos/agent-code-reviewer",
+  "name": "@open-os/agent-code-reviewer",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,7 +7,7 @@
     "lint": "node -e \"process.exit(0)\""
   },
   "dependencies": {
-    "@openos/sdk": "workspace:*",
+    "@open-os/sdk": "workspace:*",
     "glob": "^11.0.0"
   }
 }

@@ -1,4 +1,4 @@
-import type { MemoryConfig, MemoryStore } from '@openos/types'
+import type { MemoryConfig, MemoryStore } from '@open-os/types'
 
 interface Entry {
   value: unknown

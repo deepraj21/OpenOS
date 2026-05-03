@@ -2,7 +2,7 @@
 
 ## Package structure
 - Every package in packages/ has its own tsconfig.json, package.json, and src/index.ts
-- Package names use @openos/ scope: @openos/kernel, @openos/sdk, @openos/types, @openos/cli
+- Package names use @open-os/ scope: @open-os/kernel, @open-os/sdk, @open-os/types, @open-os/cli, @open-os/mcp, @open-os/a2a
 - Always import from the package name, never from relative paths across packages
 - All new utilities go in the most specific package — never add shared utils to the root
 
@@ -20,7 +20,7 @@
 - Tool parameters are always JSON Schema objects — never plain TypeScript types
 
 ## Kernel rules
-- The kernel never imports from @openos/sdk — that dependency is one-way
+- The kernel never imports from @open-os/sdk — that dependency is one-way
 - Memory stores are always created via the factory, never instantiated directly
 - Every kernel operation must emit the corresponding KernelEvent
 - No external HTTP calls in the kernel — adapters live in kernel/src/adapters/

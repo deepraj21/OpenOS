@@ -1,4 +1,4 @@
-import type { Task } from '@openos/types'
+import type { Task } from '@open-os/types'
 
 const DEFAULT_PRIORITY = 5
 

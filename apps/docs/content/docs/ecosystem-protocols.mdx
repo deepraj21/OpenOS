@@ -8,7 +8,7 @@ description: Import tools from MCP servers and delegate work to remote agents vi
 MCP standardizes how an agent connects to tools and context providers. OpenOS exposes MCP tools as normal `ToolDefinition` values so they work with `defineAgent` and the existing executor.
 
 ```typescript
-import { defineAgent, loadMcpTools } from '@openos/sdk'
+import { defineAgent, loadMcpTools } from '@open-os/sdk'
 
 const mcp = await loadMcpTools({
   command: 'npx',
@@ -28,14 +28,14 @@ const agent = defineAgent({
 await mcp.close()
 ```
 
-MCP I/O lives in `@openos/mcp`, not in the kernel, to keep the kernel free of ad-hoc network or stdio coupling.
+MCP I/O lives in `@open-os/mcp`, not in the kernel, to keep the kernel free of ad-hoc network or stdio coupling.
 
 ## A2A (Agent2Agent)
 
 The [Agent2Agent protocol](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/) complements MCP: agents coordinate across runtimes using agent cards and task APIs.
 
 ```typescript
-import { a2aDelegateRun, createA2aDelegateTool, fetchAgentCard } from '@openos/sdk'
+import { a2aDelegateRun, createA2aDelegateTool, fetchAgentCard } from '@open-os/sdk'
 
 const card = await fetchAgentCard('https://example.com/.well-known/agent-card.json')
 const out = await a2aDelegateRun({
@@ -52,4 +52,4 @@ const remoteTool = createA2aDelegateTool({
 })
 ```
 
-Implementations live in `@openos/a2a` and are re-exported from `@openos/sdk`. Pass `rpcUrl` when the Agent Card does not advertise a JSON-RPC URL your build can parse.
+Implementations live in `@open-os/a2a` and are re-exported from `@open-os/sdk`. Pass `rpcUrl` when the Agent Card does not advertise a JSON-RPC URL your build can parse.

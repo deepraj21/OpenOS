@@ -1,4 +1,4 @@
-import type { ModelConfig } from '@openos/types'
+import type { ModelConfig } from '@open-os/types'
 import { createAnthropicAdapter } from './anthropic.js'
 import { createOllamaAdapter } from './ollama.js'
 import { createOpenAIAdapter } from './openai.js'

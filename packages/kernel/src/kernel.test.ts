@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import type { AgentDefinition } from '@openos/types'
+import type { AgentDefinition } from '@open-os/types'
 import { Kernel } from './kernel.js'
 import { cannedToolCall, createMockLLMAdapter } from './test-utils/mock-adapter.js'
 

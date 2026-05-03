@@ -1,5 +1,5 @@
 export { Kernel, type KernelStats, type RunOptions } from './kernel.js'
-export type { KernelConfig } from '@openos/types'
+export type { KernelConfig } from '@open-os/types'
 export {
   createMemoryStore,
   EphemeralMemoryStore,

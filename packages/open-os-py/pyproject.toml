@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "openos"
+name = "open-os"
 version = "0.0.1"
 description = "Thin Python client for the OpenOS registry HTTP API (Phase 2)."
 requires-python = ">=3.10"
@@ -19,7 +19,7 @@ classifiers = [
 dev = ["pytest>=8.0"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["openos"]
+packages = ["open_os"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

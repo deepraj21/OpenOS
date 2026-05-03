@@ -1,4 +1,4 @@
-import type { ModelConfig } from '@openos/types'
+import type { ModelConfig } from '@open-os/types'
 import type { ChatMessage, LLMAdapter, LLMResponse, ParsedToolCall } from '../adapters/types.js'
 
 export interface MockAdapterScript {

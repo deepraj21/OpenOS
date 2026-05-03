@@ -1,7 +1,7 @@
 import json
 import unittest.mock as mock
 
-from openos.registry import RegistryClient
+from open_os.registry import RegistryClient
 
 
 def test_list_agents_parses(monkeypatch):

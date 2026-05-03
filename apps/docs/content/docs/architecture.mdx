@@ -1,14 +1,14 @@
 ---
 title: Architecture
-description: How @openos/sdk, @openos/kernel, and LLM adapters fit together.
+description: How @open-os/sdk, @open-os/kernel, and LLM adapters fit together.
 ---
 
 ## Layers
 
-- **`@openos/types`** — shared interfaces (`AgentDefinition`, `ToolDefinition`, `KernelEvent`, …).
-- **`@openos/kernel`** — scheduler, executor, memory bus, tool registry, events. No outbound HTTP; LLM calls go through adapters in `kernel/src/adapters/`.
-- **`@openos/sdk`** — `defineAgent`, `useTool`, `useMemory`, `createOS`, plus ecosystem helpers (for example `loadMcpTools` from `@openos/mcp`).
-- **`@openos/cli`** — `run`, `list`, `init`, `publish`, `install`.
+- **`@open-os/types`** — shared interfaces (`AgentDefinition`, `ToolDefinition`, `KernelEvent`, …).
+- **`@open-os/kernel`** — scheduler, executor, memory bus, tool registry, events. No outbound HTTP; LLM calls go through adapters in `kernel/src/adapters/`.
+- **`@open-os/sdk`** — `defineAgent`, `useTool`, `useMemory`, `createOS`, plus ecosystem helpers (for example `loadMcpTools` from `@open-os/mcp`).
+- **`@open-os/cli`** — `run`, `list`, `init`, `publish`, `install`.
 
 ## Task flow
 

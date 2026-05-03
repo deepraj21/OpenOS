@@ -1,6 +1,6 @@
 import { Client } from '@modelcontextprotocol/sdk/client'
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
-import type { AgentContext, ToolDefinition } from '@openos/types'
+import type { AgentContext, ToolDefinition } from '@open-os/types'
 
 /**
  * @description Configuration for connecting to an MCP server over stdio (spawned process).
@@ -61,7 +61,7 @@ export async function loadMcpTools(options: McpStdioConnectOptions): Promise<Mcp
     env: options.env,
     cwd: options.cwd,
   })
-  const client = new Client({ name: 'openos-mcp', version: '0.0.1' })
+  const client = new Client({ name: 'open-os-mcp', version: '0.0.1' })
   await client.connect(transport)
 
   const listed = await client.listTools()

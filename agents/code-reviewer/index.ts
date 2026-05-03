@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import { spawn } from 'node:child_process'
 import { glob } from 'glob'
-import { defineAgent, useTool } from '@openos/sdk'
+import { defineAgent, useTool } from '@open-os/sdk'
 
 const ALLOWED = new Set(['ls', 'pwd', 'echo', 'head', 'wc', 'git'])
 

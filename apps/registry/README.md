@@ -1,10 +1,10 @@
-# OpenOS Registry (`@openos/registry`)
+# OpenOS Registry (`@open-os/registry`)
 
 Next.js app with **Prisma** and **SQLite** for zero-config local development (`prisma/registry.db`). The schema models `Agent` and `AgentVersion` as described in the product plan.
 
 ```bash
 cp .env.example .env   # optional
-pnpm --filter @openos/registry dev
+pnpm --filter @open-os/registry dev
 ```
 
 - `GET /api/agents` supports `q` and `tag` query params.

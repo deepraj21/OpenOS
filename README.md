@@ -64,7 +64,7 @@ OpenOS is **infrastructure code** — open source, developer-first, composable. 
 
 ## Monorepo (this repository)
 
-This repo is a **pnpm + Turborepo** workspace. **Phase 1 is complete:** `@openos/types`, `@openos/kernel`, `@openos/sdk`, `@openos/cli`, and three reference agents under `agents/`. **Phase 2 (ecosystem)** adds Fumadocs-based [`apps/docs`](./apps/docs), registry HTTP API + `openos publish` / `openos install`, React Flow composer export, `@openos/mcp`, `@openos/a2a`, and a thin Python registry client in [`packages/openos-py`](./packages/openos-py). UI tokens follow [`DESIGN.md`](./DESIGN.md).
+This repo is a **pnpm + Turborepo** workspace. **Phase 1 is complete:** `@open-os/types`, `@open-os/kernel`, `@open-os/sdk`, `@open-os/cli`, and three reference agents under `agents/`. **Phase 2 (ecosystem)** adds Fumadocs-based [`apps/docs`](./apps/docs), registry HTTP API + `openos publish` / `openos install`, React Flow composer export, `@open-os/mcp`, `@open-os/a2a`, and a thin Python registry client in [`packages/open-os-py`](./packages/open-os-py). UI tokens follow [`DESIGN.md`](./DESIGN.md).
 
 ```bash
 pnpm install
@@ -77,9 +77,9 @@ pnpm exec openos run agents/web-researcher/index.ts "What is OpenOS?"
 Set provider API keys from [`.env.example`](./.env.example) (for example `ANTHROPIC_API_KEY`). For the registry app, copy `apps/registry/.env.example` to `apps/registry/.env` if you want to override `DATABASE_URL` (otherwise it defaults to `file:…/prisma/registry.db`).
 
 ```bash
-pnpm --filter @openos/docs dev      # http://localhost:3000
-pnpm --filter @openos/registry dev  # http://localhost:3001
-pnpm --filter @openos/composer dev  # http://localhost:3002
+pnpm --filter @open-os/docs dev      # http://localhost:3000
+pnpm --filter @open-os/registry dev  # http://localhost:3001
+pnpm --filter @open-os/composer dev  # http://localhost:3002
 ```
 
 ## Quick start (library usage)
@@ -87,11 +87,11 @@ pnpm --filter @openos/composer dev  # http://localhost:3002
 When published to npm, install the SDK package:
 
 ```bash
-npm install @openos/sdk
+npm install @open-os/sdk
 ```
 
 ```typescript
-import { createOS, defineAgent, useTool } from '@openos/sdk'
+import { createOS, defineAgent, useTool } from '@open-os/sdk'
 
 // Define a tool
 const searchTool = useTool({
@@ -138,8 +138,8 @@ That's it. No graph definitions. No role configuration. No YAML. Just agents and
 ```mermaid
 flowchart TB
   app[Your application]
-  sdk["@openos/sdk — defineAgent, useTool, useMemory, createOS"]
-  subgraph kernelLayer ["@openos/kernel"]
+  sdk["@open-os/sdk — defineAgent, useTool, useMemory, createOS"]
+  subgraph kernelLayer ["@open-os/kernel"]
     scheduler[Scheduler]
     executor[Executor]
     memory[Memory]
@@ -246,7 +246,7 @@ openOS/
 │   ├── cli/             # openOS CLI — run, build, publish agents
 │   ├── mcp/             # MCP stdio client → OpenOS ToolDefinition
 │   ├── a2a/             # A2A Agent Card + JSON-RPC client helpers
-│   ├── openos-py/       # Thin Python registry HTTP client (pip local path)
+│   ├── open-os-py/       # Thin Python registry HTTP client (pip local path)
 │   └── types/           # Shared TypeScript interfaces
 ├── apps/
 │   ├── docs/            # Documentation site
@@ -273,12 +273,12 @@ openOS/
 - [x] Test suite (Vitest: kernel + SDK; mock adapters, no live LLM calls in CI)
 
 ### Phase 2 — Ecosystem `[In progress]`
-- [x] Python SDK (thin) — [`packages/openos-py`](./packages/openos-py) registry client; `pip install ./packages/openos-py` until PyPI publish
+- [x] Python SDK (thin) — [`packages/open-os-py`](./packages/open-os-py) registry client; `pip install ./packages/open-os-py` until PyPI publish
 - [x] **Docs** — Next.js 15 + Fumadocs MDX ([`apps/docs`](./apps/docs)); migrated quick start, architecture, registry, MCP/A2A pages
 - [x] **Registry** — Prisma + SQLite; `POST`/`GET` APIs, optional `OPENOS_REGISTRY_API_KEYS`; CLI `openos publish` / `openos install` ([`apps/registry`](./apps/registry))
 - [x] **Composer** — React Flow + graph JSON + export generated `createOS()` module ([`apps/composer`](./apps/composer))
-- [x] MCP protocol support — [`@openos/mcp`](./packages/mcp) (`loadMcpTools`, re-exported from SDK)
-- [x] A2A protocol support — [`@openos/a2a`](./packages/a2a) (`fetchAgentCard`, `a2aDelegateRun`, `createA2aDelegateTool`, re-exported from SDK)
+- [x] MCP protocol support — [`@open-os/mcp`](./packages/mcp) (`loadMcpTools`, re-exported from SDK)
+- [x] A2A protocol support — [`@open-os/a2a`](./packages/a2a) (`fetchAgentCard`, `a2aDelegateRun`, `createA2aDelegateTool`, re-exported from SDK)
 - [ ] **Open beta** — public registry host, rate limits / abuse policy, prod `OPENOS_REGISTRY_API_KEYS`, Discord + release comms (ops checklist; not gated on further code)
 
 ### Phase 3 — Scale

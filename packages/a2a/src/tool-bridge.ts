@@ -1,4 +1,4 @@
-import type { AgentContext, ToolDefinition } from '@openos/types'
+import type { AgentContext, ToolDefinition } from '@open-os/types'
 import { a2aDelegateRun } from './delegate.js'
 
 export interface A2aRemoteToolConfig {

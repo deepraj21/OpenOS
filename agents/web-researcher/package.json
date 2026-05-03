@@ -1,5 +1,5 @@
 {
-  "name": "@openos/agent-web-researcher",
+  "name": "@open-os/agent-web-researcher",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,6 +7,6 @@
     "lint": "node -e \"process.exit(0)\""
   },
   "dependencies": {
-    "@openos/sdk": "workspace:*"
+    "@open-os/sdk": "workspace:*"
   }
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import type { AgentContext, ToolDefinition } from '@openos/types'
+import type { AgentContext, ToolDefinition } from '@open-os/types'
 import { ToolRegistry } from './tool-registry.js'
 
 function ctx(): AgentContext {

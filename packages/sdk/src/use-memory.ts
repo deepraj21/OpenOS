@@ -1,4 +1,4 @@
-import type { MemoryStore } from '@openos/types'
+import type { MemoryStore } from '@open-os/types'
 
 /**
  * @description Typed memory helper scoped to a namespace prefix.

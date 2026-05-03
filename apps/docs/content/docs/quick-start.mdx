@@ -20,11 +20,11 @@ Set provider API keys from the root `.env.example` (for example `ANTHROPIC_API_K
 ## SDK (when published)
 
 ```bash
-npm install @openos/sdk
+npm install @open-os/sdk
 ```
 
 ```typescript
-import { createOS, defineAgent, useTool } from '@openos/sdk'
+import { createOS, defineAgent, useTool } from '@open-os/sdk'
 
 const tool = useTool({
   name: 'echo',
@@ -53,7 +53,7 @@ console.log(result.output)
 ## Apps (Phase 2)
 
 ```bash
-pnpm --filter @openos/docs dev      # http://localhost:3000
-pnpm --filter @openos/registry dev  # http://localhost:3001
-pnpm --filter @openos/composer dev  # http://localhost:3002
+pnpm --filter @open-os/docs dev      # http://localhost:3000
+pnpm --filter @open-os/registry dev  # http://localhost:3001
+pnpm --filter @open-os/composer dev  # http://localhost:3002
 ```

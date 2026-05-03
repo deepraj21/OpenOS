@@ -1,5 +1,5 @@
 {
-  "name": "@openos/a2a",
+  "name": "@open-os/a2a",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -17,7 +17,7 @@
     "lint": "node -e \"process.exit(0)\""
   },
   "dependencies": {
-    "@openos/types": "workspace:*"
+    "@open-os/types": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",

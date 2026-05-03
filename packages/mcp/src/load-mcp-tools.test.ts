@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import type { ToolDefinition } from '@openos/types'
+import type { ToolDefinition } from '@open-os/types'
 
 vi.mock('@modelcontextprotocol/sdk/client', () => {
   return {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { cannedToolCall, createMockLLMAdapter } from '@openos/kernel'
+import { cannedToolCall, createMockLLMAdapter } from '@open-os/kernel'
 import { createOS } from './create-os.js'
 import { defineAgent } from './define-agent.js'
 

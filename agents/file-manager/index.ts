@@ -1,6 +1,6 @@
 import { mkdir, readFile, readdir, rename, stat, writeFile } from 'node:fs/promises'
 import { dirname, join, resolve } from 'node:path'
-import { defineAgent, useMemory, useTool } from '@openos/sdk'
+import { defineAgent, useMemory, useTool } from '@open-os/sdk'
 
 function safeResolve(userPath: string): string {
   const base = resolve(process.cwd())

@@ -5,7 +5,7 @@ import type {
   Task,
   TaskResult,
   ToolCall,
-} from '@openos/types'
+} from '@open-os/types'
 import type { ChatMessage } from './adapters/types.js'
 import type { LLMAdapter } from './adapters/types.js'
 import { ToolRegistry } from './tool-registry.js'

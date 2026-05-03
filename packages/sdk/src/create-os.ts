@@ -1,5 +1,5 @@
-import type { AgentDefinition, KernelConfig, TaskResult } from '@openos/types'
-import { getAdapter, Kernel, type KernelStats } from '@openos/kernel'
+import type { AgentDefinition, KernelConfig, TaskResult } from '@open-os/types'
+import { getAdapter, Kernel, type KernelStats } from '@open-os/kernel'
 import { defineAgent } from './define-agent.js'
 import { useTool } from './use-tool.js'
 

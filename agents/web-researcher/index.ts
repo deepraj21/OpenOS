@@ -1,4 +1,4 @@
-import { defineAgent, useTool } from '@openos/sdk'
+import { defineAgent, useTool } from '@open-os/sdk'
 
 const searchTool = useTool({
   name: 'web_search',

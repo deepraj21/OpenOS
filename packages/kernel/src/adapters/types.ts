@@ -1,4 +1,4 @@
-import type { ModelConfig } from '@openos/types'
+import type { ModelConfig } from '@open-os/types'
 
 export interface ChatMessage {
   role: 'system' | 'user' | 'assistant' | 'tool'

@@ -1,4 +1,4 @@
-import type { AgentContext, ToolDefinition } from '@openos/types'
+import type { AgentContext, ToolDefinition } from '@open-os/types'
 
 /**
  * @description Creates a tool definition with typed execute handler.

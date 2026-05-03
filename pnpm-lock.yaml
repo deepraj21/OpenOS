@@ -8,7 +8,7 @@ importers:
 
   .:
     devDependencies:
-      '@openos/cli':
+      '@open-os/cli':
         specifier: workspace:*
         version: link:packages/cli
       '@types/node':
@@ -29,7 +29,7 @@ importers:
 
   agents/code-reviewer:
     dependencies:
-      '@openos/sdk':
+      '@open-os/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
       glob:
@@ -38,13 +38,13 @@ importers:
 
   agents/file-manager:
     dependencies:
-      '@openos/sdk':
+      '@open-os/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
 
   agents/web-researcher:
     dependencies:
-      '@openos/sdk':
+      '@open-os/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
 
@@ -167,7 +167,7 @@ importers:
 
   packages/a2a:
     dependencies:
-      '@openos/types':
+      '@open-os/types':
         specifier: workspace:*
         version: link:../types
     devDependencies:
@@ -183,10 +183,10 @@ importers:
 
   packages/cli:
     dependencies:
-      '@openos/sdk':
+      '@open-os/sdk':
         specifier: workspace:*
         version: link:../sdk
-      '@openos/types':
+      '@open-os/types':
         specifier: workspace:*
         version: link:../types
       chalk:
@@ -223,7 +223,7 @@ importers:
       '@anthropic-ai/sdk':
         specifier: ^0.32.1
         version: 0.32.1
-      '@openos/types':
+      '@open-os/types':
         specifier: workspace:*
         version: link:../types
       openai:
@@ -245,7 +245,7 @@ importers:
       '@modelcontextprotocol/sdk':
         specifier: ^1.29.0
         version: 1.29.0(zod@4.4.2)
-      '@openos/types':
+      '@open-os/types':
         specifier: workspace:*
         version: link:../types
     devDependencies:
@@ -261,16 +261,16 @@ importers:
 
   packages/sdk:
     dependencies:
-      '@openos/a2a':
+      '@open-os/a2a':
         specifier: workspace:*
         version: link:../a2a
-      '@openos/kernel':
+      '@open-os/kernel':
         specifier: workspace:*
         version: link:../kernel
-      '@openos/mcp':
+      '@open-os/mcp':
         specifier: workspace:*
         version: link:../mcp
-      '@openos/types':
+      '@open-os/types':
         specifier: workspace:*
         version: link:../types
     devDependencies:

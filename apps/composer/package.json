@@ -1,5 +1,5 @@
 {
-  "name": "@openos/composer",
+  "name": "@open-os/composer",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3002",

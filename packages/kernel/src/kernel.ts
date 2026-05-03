@@ -9,7 +9,7 @@ import type {
   Task,
   TaskResult,
   ToolDefinition,
-} from '@openos/types'
+} from '@open-os/types'
 import { getAdapter } from './adapters/index.js'
 import { AgentExecutor } from './executor.js'
 import { createMemoryStore } from './memory.js'
@@ -230,7 +230,7 @@ export class Kernel extends EventEmitter {
       tools: toolMap,
       emit: (event: string, payload: unknown) => {
         if (event === 'tool:called') {
-          const p = payload as { agentId: string; toolCall: import('@openos/types').ToolCall }
+          const p = payload as { agentId: string; toolCall: import('@open-os/types').ToolCall }
           this.emitKernelEvent({
             type: 'tool:called',
             agentId: p.agentId,

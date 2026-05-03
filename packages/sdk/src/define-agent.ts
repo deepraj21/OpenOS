@@ -1,4 +1,4 @@
-import type { AgentDefinition } from '@openos/types'
+import type { AgentDefinition } from '@open-os/types'
 
 /**
  * @description Validates and returns an agent definition (typed factory).

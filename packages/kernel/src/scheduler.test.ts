@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import type { Task } from '@openos/types'
+import type { Task } from '@open-os/types'
 import { TaskScheduler } from './scheduler.js'
 
 function task(id: string, priority: number, t = 0): Task {

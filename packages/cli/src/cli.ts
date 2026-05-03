@@ -7,8 +7,8 @@ import chalk from 'chalk'
 import { Command } from 'commander'
 import ora from 'ora'
 import prompts from 'prompts'
-import { createOS } from '@openos/sdk'
-import type { AgentDefinition } from '@openos/types'
+import { createOS } from '@open-os/sdk'
+import type { AgentDefinition } from '@open-os/types'
 import {
   manifestForPublish,
   parseInstallRef,
@@ -135,7 +135,7 @@ program
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-|-$/g, '') || 'my-agent'
-    const source = `import { defineAgent } from '@openos/sdk'
+    const source = `import { defineAgent } from '@open-os/sdk'
 
 export default defineAgent({
   id: '${id}',

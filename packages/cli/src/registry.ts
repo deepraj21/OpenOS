@@ -1,5 +1,5 @@
 import { readFile } from 'node:fs/promises'
-import type { AgentDefinition } from '@openos/types'
+import type { AgentDefinition } from '@open-os/types'
 
 /**
  * @description Builds a JSON-serializable manifest from a loaded agent (no executable tool bodies).

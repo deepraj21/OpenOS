@@ -1,5 +1,5 @@
 {
-  "name": "@openos/kernel",
+  "name": "@open-os/kernel",
   "version": "0.0.1",
   "private": true,
   "type": "module",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
-    "@openos/types": "workspace:*",
+    "@open-os/types": "workspace:*",
     "openai": "^4.77.0"
   },
   "devDependencies": {

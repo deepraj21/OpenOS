@@ -1,4 +1,4 @@
-import type { AgentContext, ToolCall, ToolDefinition } from '@openos/types'
+import type { AgentContext, ToolCall, ToolDefinition } from '@open-os/types'
 
 export interface ToolExecuteResult {
   result: unknown
