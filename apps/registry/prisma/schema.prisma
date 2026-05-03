@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+/// Published agent package metadata (Phase 2 registry).
+model Agent {
+  id          String         @id @default(cuid())
+  name        String
+  description String
+  version     String         @default("0.0.1")
+  author      String         @default("unknown")
+  downloads   Int            @default(0)
+  tags        String         @default("[]") /// JSON array of strings (portable on SQLite)
+  readme      String?
+  packageJson String?
+  createdAt   DateTime       @default(now())
+  versions    AgentVersion[]
+}
+
+model AgentVersion {
+  id          String   @id @default(cuid())
+  agentId     String
+  agent       Agent    @relation(fields: [agentId], references: [id], onDelete: Cascade)
+  version     String
+  code        String
+  changelog   String?
+  publishedAt DateTime @default(now())
+
+  @@unique([agentId, version])
+}

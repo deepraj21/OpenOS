@@ -1,0 +1,44 @@
+# OpenOS Cursor Rules
+
+## Package structure
+- Every package in packages/ has its own tsconfig.json, package.json, and src/index.ts
+- Package names use @openos/ scope: @openos/kernel, @openos/sdk, @openos/types, @openos/cli
+- Always import from the package name, never from relative paths across packages
+- All new utilities go in the most specific package — never add shared utils to the root
+
+## TypeScript conventions
+- Strict mode always. No `any`. Use `unknown` when type is genuinely unknown.
+- Prefer `interface` for public API shapes, `type` for unions and computed types
+- All async functions must handle errors explicitly — no unhandled promise rejections
+- Use branded types for IDs: `type AgentId = string & { __brand: 'AgentId' }`
+
+## Agent conventions
+- Every agent file exports a default AgentDefinition
+- Agent IDs are kebab-case: 'web-researcher', 'code-reviewer'
+- System prompts are multi-line template literals, never single-line strings
+- Tool names are snake_case: 'web_search', 'fetch_page', 'read_file'
+- Tool parameters are always JSON Schema objects — never plain TypeScript types
+
+## Kernel rules
+- The kernel never imports from @openos/sdk — that dependency is one-way
+- Memory stores are always created via the factory, never instantiated directly
+- Every kernel operation must emit the corresponding KernelEvent
+- No external HTTP calls in the kernel — adapters live in kernel/src/adapters/
+
+## Testing rules
+- Never call real LLM APIs in tests — use MockLLMAdapter
+- Test files sit next to source files: scheduler.ts → scheduler.test.ts
+- Every public function needs at least one happy-path and one error-path test
+- Use vitest's `vi.mock` for adapter mocking, never monkeypatching
+
+## Documentation rules
+- Every exported function and class needs a JSDoc comment
+- JSDoc must include: @description, @param (each), @returns, @example
+- The example in JSDoc must be copy-pasteable and actually work
+- Keep inline comments minimal — code should be self-documenting
+
+## What NOT to do
+- Never add framework-specific code (React, Next.js) to packages/ — that lives in apps/
+- Never hardcode API keys — always read from environment variables
+- Never use console.log in library code — use the kernel's logger
+- Never add a dependency without checking if it can be avoided with native Node.js APIs

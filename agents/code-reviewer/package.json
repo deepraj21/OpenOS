@@ -1,0 +1,13 @@
+{
+  "name": "@openos/agent-code-reviewer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node -e \"require('fs').mkdirSync('dist',{recursive:true});require('fs').writeFileSync('dist/.gitkeep','')\"",
+    "lint": "node -e \"process.exit(0)\""
+  },
+  "dependencies": {
+    "@openos/sdk": "workspace:*",
+    "glob": "^11.0.0"
+  }
+}

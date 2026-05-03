@@ -1,0 +1,39 @@
+/* Tokens from DESIGN.md — proprietary fonts omitted; fallbacks per design spec */
+:root {
+  --color-primary: #17171c;
+  --color-canvas: #ffffff;
+  --color-ink: #212121;
+  --color-deep-green: #003c33;
+  --color-soft-stone: #eeece7;
+  --color-action-blue: #1863dc;
+  --color-coral: #ff7759;
+  --color-muted: #93939f;
+  --color-hairline: #d9d9dd;
+  --radius-lg: 22px;
+  --radius-pill: 32px;
+  --space-section: 80px;
+  --font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui;
+  --font-body: "Inter", ui-sans-serif, system-ui;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+a {
+  color: var(--color-action-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

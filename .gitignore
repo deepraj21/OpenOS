@@ -1,0 +1,11 @@
+node_modules
+dist
+.next
+.turbo
+*.tsbuildinfo
+.env
+.env.local
+apps/registry/prisma/*.db
+apps/registry/prisma/*.db-journal
+coverage
+.DS_Store
