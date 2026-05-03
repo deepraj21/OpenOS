@@ -1,0 +1,75 @@
+# Build @open-os/docs as a static site and publish to GitHub Pages.
+#
+# One-time repo setup: Settings → Pages → Build and deployment → Source: GitHub Actions.
+#
+# For a user/org site repo named <owner>.github.io, set BASE_PATH to empty in the env block below.
+# For a normal project repo, BASE_PATH defaults to /<repository-name> (GitHub Pages project URL).
+
+name: Deploy docs to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'apps/docs/**'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/docs-github-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-docs
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Compute BASE_PATH for GitHub Pages
+        id: base
+        shell: bash
+        run: |
+          NAME="${{ github.event.repository.name }}"
+          OWNER="${{ github.repository_owner }}"
+          if [[ "$NAME" == "$OWNER.github.io" ]]; then
+            echo "path=" >> "$GITHUB_OUTPUT"
+          else
+            echo "path=/$NAME" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build static docs
+        run: pnpm --filter @open-os/docs build
+        env:
+          BASE_PATH: ${{ steps.base.outputs.path }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/docs/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

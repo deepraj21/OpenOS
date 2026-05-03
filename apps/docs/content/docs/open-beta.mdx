@@ -21,4 +21,4 @@ This is a **runbook**, not application code. Complete when you are ready to invi
 ## Verification
 
 - Run `pnpm build`, `pnpm test`, and smoke-test `openos publish` / `openos install` against the production URL.
-- Confirm docs site search (`/api/search`) and static generation succeed on the host you use for production.
+- Confirm docs static generation succeeds on the host you use for production (GitHub Pages uses `output: 'export'`; there is no server-side search API in that mode).

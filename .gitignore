@@ -1,6 +1,7 @@
 node_modules
 dist
 .next
+apps/docs/out
 .turbo
 *.tsbuildinfo
 .env

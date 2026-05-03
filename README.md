@@ -82,6 +82,8 @@ pnpm --filter @open-os/registry dev  # http://localhost:3001
 pnpm --filter @open-os/composer dev  # http://localhost:3002
 ```
 
+Static docs export and **GitHub Pages** deployment use [`.github/workflows/docs-github-pages.yml`](./.github/workflows/docs-github-pages.yml); enable **Settings → Pages → GitHub Actions** in the repo, then see [`apps/docs/README.md`](./apps/docs/README.md).
+
 ## Quick start (library usage)
 
 When published to npm, install the SDK package:
